@@ -19,7 +19,25 @@
                 display: flex; align-items: center; justify-content: center;
                 cursor: pointer; border-radius: 4px; border: 2px solid rgba(0,0,0,0.2);
             }
-        </style>
+        /* Make the search bar wider and taller for mobile */
+.leaflet-control-search.search-exp {
+    width: 250px !important; /* Increase width */
+    height: 40px !important; /* Increase height */
+}
+
+.leaflet-control-search .search-input {
+    width: 200px !important;
+    height: 34px !important;
+    font-size: 16px !important; /* Prevents iPhone from auto-zooming when typing */
+    margin: 3px !important;
+}
+
+/* Make the magnifying glass icon larger */
+.leaflet-control-search .search-button {
+    width: 40px !important;
+    height: 40px !important;
+    background-size: 24px 24px !important;
+}</style>
     </head>
     <body>
         <div id="map"></div>
