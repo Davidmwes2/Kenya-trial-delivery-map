@@ -82,7 +82,28 @@
                 truckMarker.setLatLng([truckLat, truckLng]);
             }
         });
-        map.locate({setView: true, watch: true, maxZoom: 16});
+        // This variable checks if it's the first time we found you
+var firstLocationFound = false;
+
+map.on('locationfound', function(e) {
+    truckLat = e.latitude;
+    truckLng = e.longitude;
+
+    if (truckMarker === null) {
+        truckMarker = L.marker([truckLat, truckLng], {icon: truckIcon}).addTo(map);
+    } else {
+        truckMarker.setLatLng([truckLat, truckLng]);
+    }
+
+    // ONLY zoom to the truck the very first time the map loads
+    if (!firstLocationFound) {
+        map.setView(e.latlng, 16);
+        firstLocationFound = true;
+    }
+});
+
+// Watch the position but DO NOT force the view (setView: false)
+map.locate({setView: false, watch: true});
 
         // --- 4. DATA LAYERS ---
         // Nurseries
